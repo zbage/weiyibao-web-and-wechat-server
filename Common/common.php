@@ -30,7 +30,7 @@
  * </code>
  * @param string $start 开始标签
  * @param string $end 结束标签
- * @param integer|string $dec 小数位或者m 
+ * @param integer|string $dec 小数位或者m
  * @return mixed
  */
 function G($start,$end='',$dec=4) {
@@ -42,11 +42,11 @@ function G($start,$end='',$dec=4) {
         if(!isset($_info[$end])) $_info[$end]       =  microtime(TRUE);
         if(MEMORY_LIMIT_ON && $dec=='m'){
             if(!isset($_mem[$end])) $_mem[$end]     =  memory_get_usage();
-            return number_format(($_mem[$end]-$_mem[$start])/1024);          
+            return number_format(($_mem[$end]-$_mem[$start])/1024);
         }else{
             return number_format(($_info[$end]-$_info[$start]),$dec);
-        }       
-            
+        }
+
     }else{ // 记录时间和内存使用
         $_info[$start]  =  microtime(TRUE);
         if(MEMORY_LIMIT_ON) $_mem[$start]           =  memory_get_usage();
@@ -61,7 +61,7 @@ function G($start,$end='',$dec=4) {
  * N('read',1); // 记录读取次数
  * echo N('db'); // 获取当前页面数据库的所有操作次数
  * echo N('read'); // 获取当前页面读取次数
- * </code> 
+ * </code>
  * @param string $key 标识位置
  * @param integer $step 步进值
  * @return mixed
@@ -199,7 +199,7 @@ function load($name, $baseUrl='', $ext='.php') {
  * 快速导入第三方框架类库 所有第三方框架的类库文件统一放到 系统的Vendor目录下面
  * @param string $class 类库
  * @param string $baseUrl 基础目录
- * @param string $ext 类库后缀 
+ * @param string $ext 类库后缀
  * @return boolean
  */
 function vendor($class, $baseUrl = '', $ext='.php') {
@@ -257,22 +257,22 @@ function D($name='',$layer='') {
     $_model[$name]  =  $model;
     return $model;
 }
- function getdomain(){
-		$host=$_SERVER['HTTP_HOST'];
-		$host=strtolower($host);
-		if(strpos($host,"\/")!==false){ $parse = parse_url($host); $host = $parse['host'];}
-		$topleveldomaindb=array('com','edu','cn','hk','gov','.so','co','int','tk','mil','net','org','biz','info','pro','name','museum','coop','aero','xxx','idv','mobi','cc','me'); $str=''; 
-		foreach($topleveldomaindb as $v){ 
-			$str.=($str ? '|' : '').$v;
-		} 
-		$matchstr="[^\.]+\.(?:(".$str.")|\w{2}|((".$str.")\.\w{2}))$";
-		if(preg_match("/".$matchstr."/ies",$host,$matchs)){ 
-			$domain=$matchs['0']; 
-		}
-		else{ 
-			$domain=$host; 
-		}
-		return $domain;
+function getdomain(){
+    $host=$_SERVER['HTTP_HOST'];
+    $host=strtolower($host);
+    if(strpos($host,"\/")!==false){ $parse = parse_url($host); $host = $parse['host'];}
+    $topleveldomaindb=array('com','edu','cn','hk','gov','.so','co','int','tk','mil','net','org','biz','info','pro','name','museum','coop','aero','xxx','idv','mobi','cc','me'); $str='';
+    foreach($topleveldomaindb as $v){
+        $str.=($str ? '|' : '').$v;
+    }
+    $matchstr="[^\.]+\.(?:(".$str.")|\w{2}|((".$str.")\.\w{2}))$";
+    if(preg_match("/".$matchstr."/ies",$host,$matchs)){
+        $domain=$matchs['0'];
+    }
+    else{
+        $domain=$host;
+    }
+    return $domain;
 }
 /**
  * M函数用于实例化一个没有模型文件的Model
@@ -323,7 +323,7 @@ function A($name,$layer='') {
 /**
  * 远程调用模块的操作方法 URL 参数格式 [项目://][分组/]模块/操作
  * @param string $url 调用地址
- * @param string|array $vars 调用参数 支持字符串和数组 
+ * @param string|array $vars 调用参数 支持字符串和数组
  * @param string $layer 要调用的控制层名称
  * @return mixed
  */
@@ -455,7 +455,7 @@ function tag($tag, &$params=NULL) {
  * 动态添加行为扩展到某个标签
  * @param string $tag 标签名称
  * @param string $behavior 行为名称
- * @param string $path 行为路径 
+ * @param string $path 行为路径
  * @return void
  */
 function add_tag_behavior($tag,$behavior,$path='') {
@@ -504,7 +504,7 @@ function B($name, &$params=NULL) {
  * 渲染输出Widget
  * @param string $name Widget名称
  * @param array $data 传人的参数
- * @param boolean $return 是否返回内容 
+ * @param boolean $return 是否返回内容
  * @return void
  */
 function W($name, $data=array(), $return=false) {
@@ -606,7 +606,7 @@ function array_define($array,$check=true) {
  * 添加和获取页面Trace记录
  * @param string $value 变量
  * @param string $label 标签
- * @param string $level 日志级别 
+ * @param string $level 日志级别
  * @return void
  */
 function trace($value='[think]',$label='',$level='DEBUG',$record=false) {
@@ -619,8 +619,8 @@ function trace($value='[think]',$label='',$level='DEBUG',$record=false) {
             throw_exception($info);
         }
         if(!isset($_trace[$level])) {
-                $_trace[$level] =   array();
-            }
+            $_trace[$level] =   array();
+        }
         $_trace[$level][]   = $info;
         if((defined('IS_AJAX') && IS_AJAX) || !C('SHOW_PAGE_TRACE')  || $record) {
             Log::record($info,$level,$record);
