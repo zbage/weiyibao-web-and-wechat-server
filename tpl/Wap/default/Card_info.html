@@ -102,8 +102,7 @@ $(document).ready(function(){
 		<if condition="$info['logo'] neq ''">
 			<span style="float:left;padding-righ:10px"><img src="{ai9me:$info.logo}"/></span>
 		</if>
-			<!-- {ai9me:$info.info} -->
-            巨一网络科技 版权所有
+			{ai9me:$info.info}
 			
 		</div>
 		
@@ -111,7 +110,8 @@ $(document).ready(function(){
 	</ul>
 	<ul class="round" style="display:block;margin-bottom:5px;">
      <li class="intro">
-		{ai9me::C('copyright')}
+		<!-- {ai9me::C('copyright')} -->
+        巨一网络科技 版权所有
 	</li>   
 	</ul>
 	<div style="height:40px;">&nbsp;</div>
